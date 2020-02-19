@@ -85,6 +85,14 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: "Hello Beautiful People!",
+    date: "Feb 18th, 2020",
+
+    firstParagraph: "Times duck twenty-five duck duck duck say duck to duck someone duck get duck to duck how duck is duck this duck!",
+    secondParagraph: "duck duck duck duck duck duck duck duck duck duck duck duck!",
+    thirdParagraph: "This is how to get someone to say duck twenty-five times."
   }
 ];
 
@@ -98,6 +106,7 @@ const data = [
 
     <span class='expandButton'></span>
   </div>
+ 
 
   Hint: You will need to use createElement more than once here!
 
@@ -112,3 +121,47 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+function createArticle(titleText, date, pOne, pTwo, pThree){
+  const article = document.createElement('div');
+  article.classList.add('article');
+
+  const headerTwo = document.createElement('h2');
+  headerTwo.textContent = titleText;
+  article.appendChild(headerTwo);
+
+  const dateText = document.createElement('p');
+  dateText.classList.add('date');
+  dateText.textContent= date;
+  article.appendChild(dateText);
+
+  const p1 = document.createElement('p');
+  p1.textContent = pOne;
+  article.appendChild(p1);
+
+  const p2 = document.createElement('p');
+  p2.textContent = pTwo;
+  article.appendChild(p2);
+
+  const p3 = document.createElement('p');
+  p3.textContent = pThree;
+  article.appendChild(p3);
+
+  const expandbtn = document.createElement('span');
+  expandbtn.classList.add('expandButton');
+  expandbtn.textContent= 'Expand/Close';
+  expandbtn.addEventListener('click', () => {
+    article.classList.toggle('article-open')
+  })
+
+  article.appendChild(expandbtn);
+
+  return article;
+
+}
+
+const articleList = document.querySelector('.articles');
+
+data.forEach((item)=>{
+  const words = createArticle(item.title, item.date, item.firstParagraph, item.secondParagraph, item.thirdParagraph);
+  articleList.appendChild(words);
+})
